@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('comple') {
+            steps {
+                echo 'Compile stage'
+                git branch: 'main', url: 'https://github.com/JuniorBoateng/payment.git'
+                sh 'mvn compile'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'Test stage'
+                sh 'mvn test'
+            }
+        }
+        stage('package') {
+            steps {
+                echo 'Package stage'
+                sh 'mvn package'
+            }
+        }
+    }
+}
